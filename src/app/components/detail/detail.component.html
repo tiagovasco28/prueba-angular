@@ -5,11 +5,12 @@
     <button class="backButton" [routerLink]="'/'">Home</button>
 
     <div class="item" *ngFor="let element of serieResult$ | async">
-        <h2>Nombre{{element.show.name}}</h2>
+        <h2>Nombre: {{element.show.name}}</h2>
         <img class="serieImage" [src]="element.show.image.medium" alt="">
-        <p>Descripción {{plainText(element.show.summary)}}</p>
-        <p>Genero {{element.show.genres}}</p>
-      
+        <p>Descripción: {{plainText(element.show.summary)}}</p>
+        <p>Genero: {{element.show.genres}}</p>
+        <p>Puntuación:</p>
+        <ngx-stars [initialStars]="element.show.rating.average" [size]="1" [readonly]="true" [maxStars]="10" [color]="'yellow'"></ngx-stars>
     </div>
 
 </div>
