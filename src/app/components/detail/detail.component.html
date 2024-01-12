@@ -1,1 +1,15 @@
-<p>detail works!</p>
+<h3 class="title">Detalles sobre la pelicula/serie</h3>
+
+<div class="container">
+
+    <button class="backButton" [routerLink]="'/'">Home</button>
+
+    <div class="item" *ngFor="let element of serieResult$ | async">
+        <h2>Nombre{{element.show.name}}</h2>
+        <img class="serieImage" [src]="element.show.image.medium" alt="">
+        <p>Descripción {{plainText(element.show.summary)}}</p>
+        <p>Genero {{element.show.genres}}</p>
+      
+    </div>
+
+</div>
