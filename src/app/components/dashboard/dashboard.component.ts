@@ -19,7 +19,7 @@ export class DashboardComponent implements OnInit {
     return (this.searchResults$ = this.apiService.searchResults$);
   }
 
-  goToDetail(id: number): void {
-    this.router.navigate(['/detail', id]);
+  goToDetail(): void {
+    this.router.navigate(['/detail']);
   }
 }
