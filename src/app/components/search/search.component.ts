@@ -1,10 +1,29 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { Observable, switchMap, debounceTime } from 'rxjs';
+import {  ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css']
 })
-export class SearchComponent {
+export class SearchComponent implements OnInit {
+  searchControl = new FormControl();
+  searchResults$!: Observable<any>;
+
+
+  constructor(private apiService:ApiService) {}
+
+  ngOnInit(): void {
+    this.searchResults$ = this.searchControl.valueChanges.pipe(
+      debounceTime(500), // Espera 500 ms después de que el usuario deja de escribir
+      switchMap(resp =>{
+        return this.apiService.getData(resp)
+      })
+    )
+
+  }
+
 
 }

@@ -1,1 +1,7 @@
-<p>dashboard works!</p>
+<div class="container">
+    <div class="item" *ngFor="let element of searchResults$ | async;" (click)="goToDetail(element.show.id)">
+        <h2>{{element.show.name}}</h2>
+        <img class="serieImage" [src]="element.show.image.medium" alt="">
+        <p>{{element.show.rating.average}}</p>
+    </div>
+</div>

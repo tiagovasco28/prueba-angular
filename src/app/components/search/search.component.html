@@ -1,1 +1,4 @@
-<p>search works!</p>
+<input class="searchInput" [formControl]="searchControl" placeholder="Buscar pelicula o serie" />
+<div *ngIf="searchResults$ | async as results;">
+  <p *ngFor="let result of results">{{ result.name }}</p>
+</div>
