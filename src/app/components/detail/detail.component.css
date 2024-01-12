@@ -1,0 +1,41 @@
+
+.title{
+    text-align: center;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+  }
+  
+  .backButton{
+    background-color: black;
+    color:white;
+    height:40px;
+    border-style: none;
+    justify-self: end;
+  }
+  .container {
+      display: grid;
+      gap: 20px;                             
+      padding: 20px;
+      box-sizing: border-box;
+    }
+  
+    .item {
+      background-color: black;
+      color:white;
+      padding: 20px;
+      text-align: center;
+    }
+  
+    .serieImage{
+      width:150px;
+    }
+  
+  
+    @media (max-width: 768px) {
+      .container {
+        grid-template-columns: 1fr; 
+      }
+    }
+  
+  
+  
+    
