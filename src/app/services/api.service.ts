@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, map, of, tap } from 'rxjs';
+import { BehaviorSubject, Observable, filter, map, of, tap } from 'rxjs';
+import { Serie } from '../interfaces/ISerie';
 
 @Injectable({
   providedIn: 'root'
@@ -8,14 +9,14 @@ import { BehaviorSubject, Observable, map, of, tap } from 'rxjs';
 export class ApiService {
 
   private url = 'https://api.tvmaze.com/search/shows?q='; // URL to web api
-  private searchResultsSource = new BehaviorSubject<any[]>([]);
-  private serieSource = new BehaviorSubject<any[]>([]);
+  private searchResultsSource = new BehaviorSubject<Serie[]>([]);
+  private serieSource = new BehaviorSubject<Serie[]>([]);
   searchResults$ = this.searchResultsSource.asObservable();
   serieResults$ = this.serieSource.asObservable();
 
   constructor(private http: HttpClient) { }
 
-  updateSearchResults(results: any[], query: string) {
+  updateSearchResults(results: Serie[], query: string) {
     // Filtrar elementos sin show.image
     const filteredResults = results.filter(result => result.show && result.show.image);
 
@@ -26,7 +27,7 @@ export class ApiService {
     this.searchResultsSource.next(finalResults);
   }
 
-  updateSerieResult(result: any) {
+  updateSerieResult(result: Serie[]) {
     this.serieSource.next(result);
   }
 
@@ -36,12 +37,12 @@ export class ApiService {
     );
 
   }
-  
+
   getSerieById(id: number): any {
     const list = this.searchResultsSource.getValue();
     const result = list.find(item => item.show.id === id);
     return result;
   }
-  
+
 
 }

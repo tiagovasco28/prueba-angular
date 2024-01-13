@@ -3,6 +3,7 @@ import { ReactiveFormsModule, FormControl } from '@angular/forms';
 import { of } from 'rxjs';
 import { SearchComponent } from './search.component';
 import { ApiService } from 'src/app/services/api.service';
+import { Serie } from 'src/app/interfaces/ISerie';
 
 
 describe('SearchComponent', () => {
@@ -30,20 +31,29 @@ describe('SearchComponent', () => {
 
   describe('ngOnInit', () => {
     it('should initialize searchResults$ observable', fakeAsync(() => {
-
+  
       const mockValue = 'test';
-      const mockResults = [{ id: 1, name: 'Result 1' }, { id: 2, name: 'Result 2' }];
+      const mockResults: Serie[] = [
+        { show: { id: 1, name: 'Show 1', image: { medium: 'src/image' }, rating:{average: 5.0}, summary:'description' } },
+        { show: { id: 2, name: 'Show 2', image: { medium: 'src/image' },rating:{average: 5.0}, summary:'description'  } },
+        { show: { id: 3, name: 'Show 3', image: { medium: 'src/image' },rating:{average: 5.0}, summary:'description' }  },
+      ];
       apiService.getData.and.returnValue(of(mockResults));
-
+  
       // Trigger ngOnInit
       component.ngOnInit();
       component.searchControl.setValue(mockValue);
       tick(500); // Wait for debounceTime
-
+  
       component.searchResults$.subscribe(results => {
-        expect(results).toEqual(mockResults);
+        const expectedResults: Serie[] = [
+          { show: { id: 1, name: 'Show 1', image: { medium: 'src/image' }, rating:{average: 5.0}, summary:'description' } },
+          { show: { id: 2, name: 'Show 2', image: { medium: 'src/image' },rating:{average: 5.0}, summary:'description'  } },
+          { show: { id: 3, name: 'Show 3', image: { medium: 'src/image' },rating:{average: 5.0}, summary:'description' }  },
+        ];
+        expect(results).toEqual(jasmine.arrayWithExactContents(expectedResults));
       });
     }));
   });
-
+  
 });

@@ -2,6 +2,7 @@
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 import { ApiService } from './api.service';
+import { Serie } from '../interfaces/ISerie';
 
 
 describe('ApiService', () => {
@@ -29,15 +30,15 @@ describe('ApiService', () => {
   describe('updateSearchResults', () => {
     it('should update searchResultsSource with filtered and sliced results', () => {
       const query = 'Show';
-      const mockResults = [
-        { show: { id: 1, name: 'Show 1', image: {} } },
-        { show: { id: 2, name: 'Show 2', image: {} } },
-        { show: { id: 3, name: 'Show 3', image: {} } },
+      const mockResults:Serie[] = [
+        { show: { id: 1, name: 'Show 1', image: { medium: 'src/image' }, rating:{average: 5.0}, summary:'description' } },
+        { show: { id: 2, name: 'Show 2', image: { medium: 'src/image' },rating:{average: 5.0}, summary:'description'  } },
+        { show: { id: 3, name: 'Show 3', image: { medium: 'src/image' },rating:{average: 5.0}, summary:'description' }  },
       ];
-      const expectedFilteredAndSlicedResults = [
-        { show: { id: 1, name: 'Show 1', image: {} } },
-        { show: { id: 2, name: 'Show 2', image: {} } },
-        { show: { id: 3, name: 'Show 3', image: {} } },
+      const expectedFilteredAndSlicedResults:Serie[] = [
+        { show: { id: 1, name: 'Show 1', image: { medium: 'src/image' }, rating:{average: 5.0}, summary:'description' } },
+        { show: { id: 2, name: 'Show 2', image: { medium: 'src/image' },rating:{average: 5.0}, summary:'description'  } },
+        { show: { id: 3, name: 'Show 3', image: { medium: 'src/image' },rating:{average: 5.0}, summary:'description' }  },
       ];
       
       const result$ = service.searchResults$;
@@ -53,7 +54,7 @@ describe('ApiService', () => {
 
     describe('updateSerieResult', () => {
       it('should update serieSource with the provided result', () => {
-        const mockResult = [{ show: { id: 1, name: 'Show 1', image: {} } }];
+        const mockResult:Serie[] = [ { show: { id: 1, name: 'Show 1', image: { medium: 'src/image' }, rating:{average: 5.0}, summary:'description' } }];
         const result$ = service.serieResults$;
 
         service.updateSerieResult(mockResult);
@@ -66,10 +67,10 @@ describe('ApiService', () => {
     describe('getSerieById', () => {
       it('should return the correct series by ID', () => {
         // Mock data
-        const mockList = [
-          { show: { id: 1, name: 'Series 1' } },
-          { show: { id: 2, name: 'Series 2' } },
-          { show: { id: 3, name: 'Series 3' } }
+        const mockList:Serie[] = [
+          { show: { id: 1, name: 'Show 1', image: { medium: 'src/image' }, rating:{average: 5.0}, summary:'description' } },
+          { show: { id: 2, name: 'Show 2', image: { medium: 'src/image' },rating:{average: 5.0}, summary:'description'  } },
+          { show: { id: 3, name: 'Show 3', image: { medium: 'src/image' },rating:{average: 5.0}, summary:'description' }  },
         ];
   
         // Set the mock data in the service
@@ -79,14 +80,14 @@ describe('ApiService', () => {
         const result = service.getSerieById(2);
   
         // Expect the result to be the correct series
-        expect(result).toEqual({ show: { id: 2, name: 'Series 2' } });
+        expect(result).toEqual({ show: { id: 2, name: 'Show 2', image: { medium: 'src/image' },rating:{average: 5.0}, summary:'description'  } });
       });
   
       it('should return undefined for non-existent ID', () => {
         // Mock data
-        const mockList = [
-          { show: { id: 1, name: 'Series 1' } },
-          { show: { id: 3, name: 'Series 3' } }
+        const mockList:Serie[] = [
+          { show: { id: 1, name: 'Show 1', image: { medium: 'src/image' }, rating:{average: 5.0}, summary:'description' } },
+          { show: { id: 3, name: 'Show 3', image: { medium: 'src/image' },rating:{average: 5.0}, summary:'description' }  },
         ];
   
         // Set the mock data in the service

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
+import {Serie} from  '../../interfaces/ISerie'
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,7 +10,7 @@ import { ApiService } from 'src/app/services/api.service';
   styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent implements OnInit {
-  searchResults$: any;
+  searchResults$!:  Observable<Serie[]>;
 
   constructor(private apiService: ApiService, private router: Router) {}
   ngOnInit(): void {

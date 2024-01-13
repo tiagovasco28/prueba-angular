@@ -51,21 +51,6 @@ describe('DetailComponent', () => {
     });
   });
 
-  // describe('should getSeries', () => {
-  //   it('should set searchResults$ with the value from apiService', fakeAsync(() => {
-  //     const fakeSerieResults = [{ id: 1, name: 'Item 1' }, { id: 2, name: 'Item 2' }];
-  //     apiService.serieResults$ = of(fakeSerieResults);
-
-  //     component.getSeries();
-  //     tick(); // Wait for the asynchronous operation to complete
-
-  //     let actualResults: any;
-  //     component.serieResult$.subscribe((results: any) => actualResults = results);
-
-  //     expect(actualResults).toEqual(fakeSerieResults);
-  //   }));
-  // });
-
   describe('plainText', () => {
     it('should return plain text without HTML tags', () => {
       const htmlText = '<p>This is <b>bold</b> text.</p>';

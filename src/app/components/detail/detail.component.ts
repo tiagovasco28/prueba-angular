@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, HostListener, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Serie } from 'src/app/interfaces/ISerie';
 
 import { ApiService } from 'src/app/services/api.service';
 
@@ -10,10 +11,23 @@ import { ApiService } from 'src/app/services/api.service';
 })
 export class DetailComponent implements OnInit {
 
-  serieResult$: any;
+  serieResult$!: Serie;
   ratingValue: number = 10;
 
-  constructor(private route: ActivatedRoute, private apiService: ApiService) { }
+  constructor(private route: ActivatedRoute, private apiService: ApiService, private router:Router) { }
+
+  @HostListener('window:keydown', ['$event'])
+  onKeyDown(event: KeyboardEvent) {
+    if (event.key === 'F5') {
+      this.router.navigate(['/']);
+    }
+  }
+
+  @HostListener('window:load', ['$event'])
+  onLoad(event: Event) {
+    this.router.navigate(['/']);
+  }
+
 
   ngOnInit(): void {
     const id = +this.route.snapshot.params['id'];
