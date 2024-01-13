@@ -36,14 +36,12 @@ export class ApiService {
     );
 
   }
-
-  getSerieById(id: number): Observable<any> {
-    return this.searchResults$.pipe(
-      tap(list => {
-        const result = list.filter(item => item.show.id === id);
-        this.updateSerieResult(result);
-      })
-    );
+  
+  getSerieById(id: number): any {
+    const list = this.searchResultsSource.getValue();
+    const result = list.find(item => item.show.id === id);
+    return result;
   }
+  
 
 }

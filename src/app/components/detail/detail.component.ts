@@ -17,12 +17,7 @@ export class DetailComponent implements OnInit {
 
   ngOnInit(): void {
     const id = +this.route.snapshot.params['id'];
-    this.apiService.getSerieById(id).subscribe();
-    this.getSeries();
-  }
-
-  getSeries(){
-    return this.serieResult$ = this.apiService.serieResults$
+    this.serieResult$ = this.apiService.getSerieById(id);
   }
 
   plainText(htmlText: string): string {
