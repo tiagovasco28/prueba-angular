@@ -1,7 +1,7 @@
 <div class="container">
     <div class="item" *ngFor="let item of searchResults$ | async;" (click)="goToDetail(item.show.id)">
-        <h4>{{item.show.name}}</h4>
+        <h4 class="serieTitle">{{item.show.name}}</h4>
         <img class="serieImage" [src]="item.show.image.medium" alt="">
-        <p>{{item.show.rating.average}}</p>
+        <p> Puntuación: {{item.show.rating.average}}</p>
     </div>
 </div>

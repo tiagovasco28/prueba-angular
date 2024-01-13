@@ -2,13 +2,14 @@
 
 <div class="container">
     <button class="backButton" [routerLink]="'/'">Home</button>
-<div class="item">
+    <div class="item">
 
-    <h2>Nombre: {{serieResult$.show.name}}</h2>
-    <img class="serieImage" [src]="serieResult$.show.image.medium" alt="">
-    <p>Descripción: {{plainText(serieResult$.show.summary)}}</p>
-    <p>Genero: {{serieResult$.show.genres}}</p>
-    <p>Puntuación:</p>
-    <ngx-stars [initialStars]="serieResult$.show.rating.average" [size]="1" [readonly]="true" [maxStars]="10" [color]="'yellow'"></ngx-stars>
-</div>
+        <h2>Nombre: {{serieResult$.show.name}}</h2>
+        <img class="serieImage" [src]="serieResult$.show.image.medium" alt="">
+        <p>Descripción: {{plainText(serieResult$.show.summary)}}</p>
+        <p>Genero: {{serieResult$.show.genres}}</p>
+        <p>Puntuación:</p>
+        <ngx-stars [initialStars]="serieResult$.show.rating.average" [size]="1" [readonly]="true" [maxStars]="10"
+            [color]="'yellow'"></ngx-stars>
+    </div>
 </div>

@@ -1,5 +1,11 @@
-.searchInput{
-    width:40vw;
-    height:30px;
-    padding-left:8px;
+.searchInput {
+    width: 40vw;
+    height: 30px;
+    padding-left: 8px;
+}
+
+@media (max-width: 768px) {
+    .searchInput {
+        width: 80vw;
+    }
 }
